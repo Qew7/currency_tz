@@ -1,0 +1,11 @@
+Представленый курс покупки доллара - <%= present(@rate){ |r| r.value } %>  рублей<br/>
+<% if @rate.kind_of? ForcedRate %>
+Курс является форсированым и продержится до <%= @rate.last_to %>
+<% end %>
+<%= form_tag('/admin', method: 'post') do %>
+  <%= label_tag(:forced_rate_value, "Форсированая цена:") %>
+  <%= number_field(:forced_rate, :value, in: 0.0..(1.0 / 0.0), step: 0.01) %>
+  <%= label_tag(:forced_rate_last_to, "Цена будет держаться до:") %>
+  <%= datetime_local_field(:forced_rate, :last_to) %>
+  <%= submit_tag("Форсировать цену") %>
+<% end %>
