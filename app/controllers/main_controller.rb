@@ -18,8 +18,9 @@ class MainController < ApplicationController
         format.html  { redirect_to(admin_url,
                       notice: "Новый курс #{@rate.value} продержится до #{@rate.last_to}.") }
       else
+      	p @rate.errors.full_messages
         format.html  { redirect_to(admin_url,
-                      notice: "#{@rate.errors}") }
+                      error: "#{@rate.errors.full_messages}") }
       end
     end
   end
@@ -27,10 +28,10 @@ class MainController < ApplicationController
   private
 
   def choose_rate
-  	@rate = RateChooser.new.call
+    @rate = RateChooser.new.call
   end
 
   def forced_rate_params
-  	params.require(:forced_rate).permit(:value, :last_to)
+    params.require(:forced_rate).permit(:value, :last_to)
   end
 end
