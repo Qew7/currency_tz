@@ -18,7 +18,6 @@ class MainController < ApplicationController
         format.html  { redirect_to(admin_url,
                       notice: "Новый курс #{@rate.value} продержится до #{@rate.last_to}.") }
       else
-      	p @rate.errors.full_messages
         format.html  { redirect_to(admin_url,
                       error: "#{@rate.errors.full_messages}") }
       end
