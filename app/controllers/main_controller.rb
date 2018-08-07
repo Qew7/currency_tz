@@ -19,7 +19,7 @@ class MainController < ApplicationController
                       notice: "Новый курс #{@rate.value} продержится до #{@rate.last_to}.") }
       else
         format.html  { redirect_to(admin_url,
-                      error: "#{@rate.errors.full_messages}") }
+                      error: "Ошибка!") }
       end
     end
   end
